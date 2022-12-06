@@ -1,6 +1,8 @@
 package com.weather.service;
 
+import org.json.JSONObject;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 @Service
 public class WeatherService {
@@ -19,6 +21,19 @@ public class WeatherService {
 		}
 		
 		return str;
+	}
+	
+	public String tempCity(String city) {
+		String str = "https://goweather.herokuapp.com/weather/" + city;
+		
+		RestTemplate restTemplate = new RestTemplate();
+	    String result = restTemplate.getForObject(str, String.class);
+	    	    
+	    JSONObject jsonObject = new JSONObject(result);
+	    
+	    String temp = jsonObject.get("temperature").toString();
+		
+		return temp;
 	}
 	
 	

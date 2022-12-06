@@ -18,7 +18,13 @@ public class WeatherController {
 	
 	@GetMapping("/{longitude}/{latitude}")
 	public String getWeatherDetails(@PathVariable("longitude") double longitude, @PathVariable("latitude") double latitude) {
-		String str = weatherService.weatherDetail(longitude, latitude);
+		String str = weatherService.weatherDetail(longitude,latitude);
+		return str;
+	}
+	
+	@GetMapping("/{city}")
+	public String getTempDetails(@PathVariable("city") String city) {
+		String str = weatherService.tempCity(city);
 		return str;
 	}
 }
